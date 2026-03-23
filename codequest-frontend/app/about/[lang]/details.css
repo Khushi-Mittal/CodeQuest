@@ -1,0 +1,62 @@
+.wiki-container {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+.back-link {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+.doc-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 50px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.doc-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+.highlight {
+  color: #ff4141;
+}
+.doc-body {
+  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+.quiz-prompt {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.prompt-text {
+  margin-bottom: 20px;
+  color: #f8fafc;
+}
+.launch-btn {
+  background: #ff4141;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s;
+}
+.launch-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 65, 65, 0.3);
+}
+.loading-state {
+  text-align: center;
+  color: white;
+  margin-top: 100px;
+  font-size: 18px;
+}
