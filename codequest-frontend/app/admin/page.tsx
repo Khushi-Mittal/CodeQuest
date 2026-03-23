@@ -2,12 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import './admin.css';
+import { BASE_URL } from "@/utils/config";
 
 export default function AdminDashboard() {
   const [items, setItems] = useState<any[]>([]);
 
   const pull = () => {
-    fetch("http://localhost:8000/categories")
+    fetch(`${BASE_URL}/categories`)
       .then(res => res.json())
       .then(data => setItems(data));
   };
@@ -16,7 +17,7 @@ export default function AdminDashboard() {
 
   const onWipe = async (slug: string) => {
     if (!confirm(`Permanently remove ${slug}?`)) return;
-    const res = await fetch(`http://localhost:8000/admin/delete-category/${encodeURIComponent(slug)}`, { method: 'DELETE' });
+    const res = await fetch(`${BASE_URL}/admin/delete-category/${encodeURIComponent(slug)}`, { method: 'DELETE' });
     if (res.ok) pull();
   };
 

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import '../admin.css';
+import { BASE_URL } from "@/utils/config";
 
 export default function AddCategory() {
   const router = useRouter();
@@ -9,7 +10,7 @@ export default function AddCategory() {
 
   const onPublish = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:8000/admin/add-category", {
+    const res = await fetch(`${BASE_URL}/admin/add-category`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)

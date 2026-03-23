@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import '../admin.css';
+import { BASE_URL } from "@/utils/config";
 
 export default function ManageQuestions() {
   const [catalog, setCatalog] = useState<any[]>([]);
@@ -11,7 +12,7 @@ export default function ManageQuestions() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://localhost:8000/categories")
+    fetch(`${BASE_URL}/categories`)
       .then(res => res.json())
       .then(data => setCatalog(data));
   }, []);
@@ -19,14 +20,14 @@ export default function ManageQuestions() {
   const onFilter = async (lang: string) => {
     setActive(lang);
     if (!lang) return setDataPool([]);
-    const res = await fetch(`http://localhost:8000/quiz/${encodeURIComponent(lang)}`);
+    const res = await fetch(`${BASE_URL}/quiz/${encodeURIComponent(lang)}`);
     const list = await res.json();
     setDataPool(list);
   };
 
   const onRemove = async (id: string) => {
     if (!confirm("Remove this question permanently?")) return;
-    const res = await fetch(`http://localhost:8000/admin/delete-question/${id}`, { method: 'DELETE' });
+    const res = await fetch(`${BASE_URL}/admin/delete-question/${id}`, { method: 'DELETE' });
     if (res.ok) onFilter(active);
   };
 

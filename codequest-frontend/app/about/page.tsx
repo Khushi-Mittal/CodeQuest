@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import './browse.css';
+import { BASE_URL } from '@/utils/config';
 
 export default function AboutIndex() {
   const [subjects, setSubjects] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/categories")
+    fetch(`${BASE_URL}/categories`)
       .then(res => res.json())
       .then(data => setSubjects(data));
   }, []);

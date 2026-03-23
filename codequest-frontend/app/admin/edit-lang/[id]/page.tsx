@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import '../../admin.css';
+import { BASE_URL } from '@/utils/config';
 
 export default function EditLanguagePage() {
   const params = useParams();
@@ -14,8 +15,8 @@ export default function EditLanguagePage() {
     if (!id) return;
     const sync = async () => {
       const [listRes, docRes] = await Promise.all([
-        fetch("http://localhost:8000/categories"),
-        fetch(`http://localhost:8000/about/${encodeURIComponent(id)}`)
+        fetch(`${BASE_URL}/categories`),
+        fetch(`${BASE_URL}/about/${encodeURIComponent(id)}`)
       ]);
       const list = await listRes.json();
       const doc = await docRes.json();
@@ -28,7 +29,7 @@ export default function EditLanguagePage() {
 
   const onUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch(`http://localhost:8000/admin/edit-category/${encodeURIComponent(id)}`, {
+    await fetch(`${BASE_URL}/admin/edit-category/${encodeURIComponent(id)}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
 import '../../admin.css';
+import { BASE_URL } from '@/utils/config';
 
 export default function EditSingleQuestion() {
   const { q_id } = useParams();
@@ -12,7 +13,7 @@ export default function EditSingleQuestion() {
 
   useEffect(() => {
     if (!lang) return;
-    fetch(`http://localhost:8000/quiz/${encodeURIComponent(lang)}`)
+    fetch(`${BASE_URL}/quiz/${encodeURIComponent(lang)}`)
       .then(res => res.json())
       .then(pool => {
         const item = pool.find((q: any) => q.id === q_id);
@@ -22,7 +23,7 @@ export default function EditSingleQuestion() {
 
   const onSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch(`http://localhost:8000/admin/edit-question/${q_id}`, {
+    await fetch(`${BASE_URL}/admin/edit-question/${q_id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(state)

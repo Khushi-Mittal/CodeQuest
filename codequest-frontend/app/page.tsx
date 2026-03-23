@@ -4,6 +4,7 @@ import Link from "next/link";
 import Lottie from "lottie-react";
 import animationData from "../public/coding.json";
 import "./home.css";
+import { BASE_URL } from "@/utils/config";
 
 export default function HomePage() {
   const [user, setUser] = useState<string | null>(null);
@@ -12,7 +13,7 @@ export default function HomePage() {
   useEffect(() => {
     setUser(localStorage.getItem("user"));
 
-    fetch("http://localhost:8000/categories")
+    fetch(`${BASE_URL}/categories`)
       .then(res => res.json())
       .then(data => setCategories(data))
       .catch(err => console.error("Failed to load categories", err));

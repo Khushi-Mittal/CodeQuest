@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import '../admin.css';
+import { BASE_URL } from '@/utils/config';
 
 export default function AddMultipleQuestions() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function AddMultipleQuestions() {
   const [payload, setPayload] = useState([{ question: '', options: ['', '', '', ''], answer: '' }]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/categories")
+    fetch(`${BASE_URL}/categories`)
       .then(res => res.json())
       .then(data => setCatalog(Array.isArray(data) ? data : []));
   }, []);
@@ -37,7 +38,7 @@ export default function AddMultipleQuestions() {
     if (!selection) return alert("Please select a language.");
 
     for (const q of payload) {
-      await fetch("http://localhost:8000/admin/add-question", {
+      await fetch(`${BASE_URL}/admin/add-question`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ language: selection, ...q })

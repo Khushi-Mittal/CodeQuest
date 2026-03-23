@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import './details.css';
+import { BASE_URL } from '@/utils/config';
 
 export default function LanguageDetail() {
   const params = useParams();
@@ -14,7 +15,7 @@ export default function LanguageDetail() {
   useEffect(() => {
     if (!langId) return;
     setLoading(true);
-    fetch(`http://localhost:8000/about/${encodeURIComponent(langId)}`)
+    fetch(`${BASE_URL}/about/${encodeURIComponent(langId)}`)
       .then(res => res.json())
       .then(info => {
         setData(info);
